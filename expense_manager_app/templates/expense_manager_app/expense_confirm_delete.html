@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Expense</title>
+</head>
+<body>
+    <form method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <p>Are you sure you want to delete this expense?</p>
+        <input type="submit" value="Delete">
+    </form>
+</body>
+</html>

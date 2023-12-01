@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Expense List</title>
+</head>
+<body>
+    {% for expense in expenses %}
+    <ul>
+        <li>Card name: {{expense.card}}</li>
+        <li>Category: {{expense.category}}</li>
+        <li>Expense Date: {{expense.expense_date}}</li>
+        <li>Amount: {{expense.amount}}</li>
+        <li>Notes: {{expense.notes}}</li>
+        <a href="{% url 'expense-detail' expense.id %}">View</a>
+        <a href="{% url 'expense-update' expense.id %}">Update</a>
+        <a href="{% url 'expense-delete' expense.id %}">Delete</a>
+    </ul>
+    {% endfor %}
+    <a href="{% url 'expense-add' %}">Add more expense.</a>
+</body>
+</html>
