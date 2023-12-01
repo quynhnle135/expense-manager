@@ -61,7 +61,7 @@ class ExpenseUpdateView(LoginRequiredMixin, generic.UpdateView):
     login_url = "/login/"
     model = Expense
     fields = ["card", "category", "expense_date", "amount", "notes"]
-    template = "expense_manager_app/expense_update_form.html"
+    template_name = "expense_manager_app/expense_update_form.html"
     success_url = reverse_lazy("expense-list")
 
 

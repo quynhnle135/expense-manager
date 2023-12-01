@@ -19,10 +19,10 @@
 </div>
 
 <!--Expense List section-->
-<div id="tasklist" class="task-item-wrapper">
+<div>
     {% for expense in expenses %}
-    <div class="task-wrapper" data-position="{{expense.pk}}">
-        <div class="task-title">
+    <div class="expense-wrapper" data-position="{{expense.pk}}">
+        <div class="expense-title">
             <ul>
                 <li>Card name: {{expense.card}}</li>
                 <li>Category: {{expense.category}}</li>
@@ -31,7 +31,7 @@
                 <li>Notes: {{expense.notes}}</li>
             </ul>
         </div>
-        <div class="task-controls">
+        <div class="expense-controls">
             <a style="text-decoration: underline; color: #001B79;" href="{% url 'expense-detail' expense.id %}">View</a>
             <a style="text-decoration: underline; color: #001B79;" href="{% url 'expense-update' expense.id %}">Update</a>
             <a class="delete-link" href="{% url 'expense-delete' expense.id %}">&#215;</a>
