@@ -5,6 +5,9 @@
     <title>Expense List</title>
 </head>
 <body>
+    <a href="{% url 'logout' %}">Logout</a>
+    <h1> There are {{count}} expenses!</h1>
+<!--    <h2> Welcome {{user}} </h2>-->
     {% for expense in expenses %}
     <ul>
         <li>Card name: {{expense.card}}</li>
