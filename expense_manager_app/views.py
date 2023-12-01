@@ -1,20 +1,24 @@
-from django.shortcuts import redirect, render
+from django.contrib.auth import login
 from django.views import generic
 from .models import Expense
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .forms import RegisterForm
+from django.contrib.auth.views import FormView
+from django.contrib.auth.forms import UserCreationForm
+from . import forms
 
 
-def register(request):
-    if request.method == "POST":
-        form = RegisterForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('login')
-    else:
-        form = RegisterForm()
-    return render(request, "expense_manager_app/register.html", {"form": form})
+class UserRegisterView(FormView):
+    form_class = forms.RegisterForm
+    template_name = "expense_manager_app/register.html"
+    redirect_authenticated_user = True
+    success_url = reverse_lazy("login")
+
+    def form_valid(self, form):
+        user = form.save()
+        if user is not None:
+            login(self.request, user)
+        return super().form_valid(form)
 
 
 class ExpenseListView(LoginRequiredMixin, generic.ListView):
@@ -46,6 +50,11 @@ class ExpenseCreateView(LoginRequiredMixin, generic.CreateView):
     fields = ["card", "category", "expense_date", "amount", "notes"]
     template_name = "expense_manager_app/expense_form.html"
     success_url = reverse_lazy("expense-list")
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        form.save()
+        return super().form_valid(form)
 
 
 class ExpenseUpdateView(LoginRequiredMixin, generic.UpdateView):

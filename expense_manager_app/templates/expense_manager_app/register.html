@@ -1,15 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Register</title>
-</head>
-<body>
+{% extends 'expense_manager_app/main.html' %}
+{% block content %}
+
+<div class="header-bar">
+    <h1>Register new account</h1>
+</div>
+
+<div class="card-body">
     <form method="POST">
         {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Register">
+        {{form.as_p}}
+        <input class="button" type="submit" value="Register">
     </form>
+    <br>
     <a href="{% url 'login' %}">Already have an account? Login.</a>
-</body>
-</html>
+</div>
+
+{% endblock content %}

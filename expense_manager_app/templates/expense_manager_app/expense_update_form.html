@@ -1,14 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Expense Update</title>
-</head>
-<body>
-    <form method="POST">
-        {% csrf_token %}
-        {{form.as_p}}
-        <input type="submit" value="Update">
-    </form>
-</body>
-</html>
+{% extends 'expense_manager_app/main.html' %}
+{% block content%}
+
+<div class="header-bar">
+  <a href="{% url 'task-list' %}">Go back</a>
+</div>
+
+<div class="card-body">
+  <form method="POST">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <input class="button" type="submit" value="Update">
+  </form>
+</div>
+
+{% endblock content %}

@@ -1,16 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Expense Detail</title>
-</head>
-<body>
-    <ul>
-        <li>Card name: {{expense.card}}</li>
-        <li>Category: {{expense.category}}</li>
-        <li>Expense Date: {{expense.expense_date}}</li>
-        <li>Amount: {{expense.amount}}</li>
-        <li>Notes: {{expense.notes}}</li>
-    </ul>
-</body>
-</html>
+{% extends 'expense_manager_app/main.html' %}
+{% block content%}
+<div class="header-bar">
+  <a href="{% url 'expense-list' %}">Go back</a>
+</div>
+
+<div class="card-body">
+    <h1>Expense Detail</h1>
+    <h3>Card name: {{expense.card}}</h3>
+    <h3>Date: {{expense.expense_data}}</h3>
+    <h3>Amount: ${{expense.amount}}</h3>
+    <h3>Category: {{expense.category}}</h3>
+    <h3>Notes (optional): {{expense.notes}}</h3>
+    <a style="text-decoration:none; color: green; padding: 0px" href="{% url 'expense-update' expense.id %}">Update</a>
+    <a style="text-decoration:none; color: red; padding: 20px;" href="{% url 'expense-delete' expense.id %}">Delete</a>
+</div>
+
+{% endblock content %}

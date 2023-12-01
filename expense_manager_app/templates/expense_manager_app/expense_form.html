@@ -1,14 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Add Expense</title>
-</head>
-<body>
+{% extends 'expense_manager_app/main.html' %}
+{% block content%}
+
+<div class="header-bar">
+  <a href="{% url 'expense-list' %}">Go back</a>
+</div>
+
+<div class="card-body">
     <form method="POST">
         {% csrf_token %}
         {{form.as_p}}
-        <input type="submit" value="Add">
+        <input class="button" type="submit" value="Create">
     </form>
-</body>
-</html>
+</div>
+
+{% endblock content %}
