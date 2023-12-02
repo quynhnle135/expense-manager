@@ -3,6 +3,7 @@
 ## Introduction
 - This Expense Management Application is a web-based platform designed to help users manage their expenses efficiently. Built with Django and Django REST Framework, it offers a user-friend interface for tracking and organizing expenses.
 - Skills: Python, Django, Django REST Framework, HTML, CSS, Git.
+- You can check the Python OOP version [here](https://github.com/quynhnle135/expense-management-oop).
 
 ## Features
 * User Account Management: Users can create an account, log in, and log out, ensuring that each user's data is private and secure.
