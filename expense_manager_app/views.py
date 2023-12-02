@@ -6,7 +6,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import FormView
 from . import forms
 from django.db.models import Q
-from datetime import datetime
 from django.db.models import Sum
 
 
@@ -69,11 +68,7 @@ class ExpenseSearchView(LoginRequiredMixin, generic.ListView):
         if search_category:
             query &= Q(category__icontains=search_category)
         if search_date:
-            try:
-                date_obj = datetime.strptime(search_date, "%Y-%m-%d")
-                query &= Q(date__date=date_obj)
-            except ValueError:
-                pass
+            query &= Q(expense_date__contains=search_date)
         if search_amount:
             query &= Q(amount__exact=search_amount)
         if search_notes:
