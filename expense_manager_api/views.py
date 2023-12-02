@@ -29,11 +29,19 @@ class ExpenseListCreateView(generics.ListCreateAPIView):
         user = self.request.user
         return Expense.objects.filter(user=user)
 
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
 
 class ExpenseRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
+    # queryset = Expense.objects.all()
     serializer_class = ExpenseSerializer
     permissions_class = [permissions.IsAuthenticated]
 
     def get_queryset(self):
         user = self.request.user
         return Expense.objects.filter(user=user)
+
+    def perform_update(self, serializer):
+        serializer.save(user=self.request.user)
+
