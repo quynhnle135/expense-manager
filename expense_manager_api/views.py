@@ -19,15 +19,21 @@ class ExpenseFilter(filters.FilterSet):
 
 
 class ExpenseListCreateView(generics.ListCreateAPIView):
-    queryset = Expense.objects.all()
     serializer_class = ExpenseSerializer
     permission_classes = [permissions.IsAuthenticated]
     filter_backends = (filters.DjangoFilterBackend, SearchFilter)
     filterset_class = ExpenseFilter
     search_fields = ["card", "category", "notes", "expense_date", "amount"]
 
+    def get_queryset(self):
+        user = self.request.user
+        return Expense.objects.filter(user=user)
+
 
 class ExpenseRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Expense.objects.all()
     serializer_class = ExpenseSerializer
     permissions_class = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        user = self.request.user
+        return Expense.objects.filter(user=user)
