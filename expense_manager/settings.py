@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'expense_manager_app.apps.ExpenseManagerAppConfig',
     'expense_manager_api.apps.ExpenseManagerApiConfig',
     'rest_framework',
-    'django_filters'
+    'django_filters',
 ]
 
 MIDDLEWARE = [

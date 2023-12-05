@@ -13,4 +13,4 @@ class Expense(models.Model):
     notes = models.TextField(null=True, blank=True)
 
     def __str__(self):
-        return f"{self.card} -  {self.expense_date} - {self.amount}"
+        return f"{self.card} - {self.expense_date} - {self.amount}"
